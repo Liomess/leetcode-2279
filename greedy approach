@@ -1,0 +1,17 @@
+class Solution:
+    def maximumBags(self, capacity: List[int], rocks: List[int], additionalRocks: int) -> int:
+        n=len(rocks)
+        diff=[-1]*n
+        for i in range(n):
+            diff[i]=capacity[i]-rocks[i]
+        diff.sort()
+        count=0
+        for i in range(n):
+            if diff[i]==0:
+                count+=1
+            elif additionalRocks>=diff[i]:
+                additionalRocks-=diff[i]
+                count+=1
+            else:
+                break
+        return count
